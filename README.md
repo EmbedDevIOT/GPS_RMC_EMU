@@ -1,5 +1,5 @@
 <p align="center">
-<h2> Эмулятор GPS RMC посылки.</h2> 
+ Эмулятор GPS RMC посылки.
 </p>
 <!-- ![table](https://github.com/EmbedDevIOT/ClockStation_rev0/blob/main/doc/StartPage.jpg) -->
 <p align="center">
