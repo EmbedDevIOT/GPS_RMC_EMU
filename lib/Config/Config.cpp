@@ -2,22 +2,6 @@
 //==========================================================================
 
 //=======================================================================
-// Writing color in RGB to buf
-void ColorWrite(char *buf, struct color *C)
-{
-  strcat(buf, "<R>");
-  itoa(C->R, buf + strlen(buf), DEC);
-  strcat(buf, "</R>\r\n");
-  strcat(buf, "<G>");
-  itoa(C->G, buf + strlen(buf), DEC);
-  strcat(buf, "</G>\r\n");
-  strcat(buf, "<B>");
-  itoa(C->B, buf + strlen(buf), DEC);
-  strcat(buf, "</B>\r\n");
-}
-//=======================================================================
-
-//=======================================================================
 void UserPresetInit()
 {
   strcat(UserText.runtext, "РЭТРА - КАЩЕНКО - ИЮЛЬСКИЕ ДНИ");
