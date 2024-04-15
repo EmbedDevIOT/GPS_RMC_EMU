@@ -1,6 +1,6 @@
-<p align="center" font="24">
- Эмулятор GPS RMC посылки.
-</p>
+<div id="body" align="center">
+ <h1> Эмулятор GPS RMC посылки. </h1>
+</div>
 <!-- ![table](https://github.com/EmbedDevIOT/ClockStation_rev0/blob/main/doc/StartPage.jpg) -->
 <p align="center">
   <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/c-colored.svg" width="36" height="36" alt="C" />
