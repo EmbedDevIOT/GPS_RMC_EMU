@@ -6,8 +6,8 @@
 
 //=========================== GLOBAL VARIABLES =========================
 char buf[32] = {0}; // buff for send message
-char umsg[30];
-
+// String rmc_msg = "$GPRMC,144526.539,A,5231.772,N,01324.117,E,777.4,084.4,120424,000.0,W*7C";
+String rmc_msg = "";
 uint8_t sec_cnt = 0;
 uint8_t data = 0;
 uint8_t month = 0;
@@ -51,7 +51,16 @@ void HandlerCore1(void *pvParameters)
     Serial.println(xPortGetCoreID());
     for (;;)
     {
+        Clock = RTC.getTime();
+
         DebugInfo();
+        rmc_msg += "$GPRMC,";
+        rmc_msg += Clock.hour - 3;
+        rmc_msg += Clock.minute;
+        rmc_msg += Clock.second;
+        rmc_msg += ".000,A,5231.772,N,01324.117,E,777.4,084.4,120424,000.0,W*7C";
+        Serial2.println(rmc_msg);
+        rmc_msg.clear();
 
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
@@ -61,7 +70,7 @@ void HandlerCore1(void *pvParameters)
 //=======================       S E T U P       =========================
 void setup()
 {
-    CFG.fw = "0.3";
+    CFG.fw = "0.4";
     CFG.fwdate = "16.04.2024";
 
     Serial.begin(UARTSpeed);
@@ -114,5 +123,6 @@ void setup()
 }
 //=======================================================================
 
+//=======================        L O O P        =========================
 void loop(){}
 //=======================================================================
