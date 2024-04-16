@@ -12,7 +12,6 @@
 #include <ArduinoJson.h>
 
 #define UARTSpeed 115200
-#define GPSSpeed 9600
 
 #define WiFi_
 
@@ -56,10 +55,12 @@ enum Clicks
 struct GlobalConfig
 {
   uint16_t sn = 0;
-  String fw = ""; // accepts from setup()
+  uint16_t gps_speed = 9600;
+  String fw = ""; 
   String fwdate = "";
   String chipID = "";
   String MacAdr = "";
+
   String NTPServer = "pool.ntp.org";
   String APSSID = "0120Time";
   String APPAS = "retra0120zxc";
@@ -125,7 +126,6 @@ void SystemFactoryReset(void);
 void ShowFlashSave(void);
 void getTimeChar(char* array);
 void getDateChar(char* array);
-void SendXMLDataS(void);
 void SendXMLDataD(void);
 void SendXMLUserData(char* msg);
 //============================================================================

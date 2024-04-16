@@ -4,8 +4,8 @@
 //=======================================================================
 void UserPresetInit()
 {
-  strcat(UserText.runtext, "РЭТРА - КАЩЕНКО - ИЮЛЬСКИЕ ДНИ");
-  strcat(UserText.carname, "Вагон ");
+  // strcat(UserText.runtext, "РЭТРА - КАЩЕНКО - ИЮЛЬСКИЕ ДНИ");
+  // strcat(UserText.carname, "Вагон ");
 }
 
 /************************ System Initialisation **********************/
@@ -27,7 +27,7 @@ void SystemInit(void)
 void ShowInfoDevice(void)
 {
   Serial.println(F("Starting..."));
-  Serial.println(F("TableController_0846"));
+  Serial.println(F("Emulator_RMC_GPS_0120.002"));
   Serial.print(F("SN:"));
   Serial.println(CFG.sn);
   Serial.print(F("fw_date:"));
@@ -105,8 +105,8 @@ void SystemFactoryReset()
 {
   CFG.TimeZone = 3;
   CFG.WiFiMode = AccessPoint;
-  CFG.APSSID = "0840-0";
-  CFG.APPAS = "retra0840zxc";
+  CFG.APSSID = "0120-0";
+  CFG.APPAS = "retra0120zxc";
   CFG.IP1 = 192;
   CFG.IP2 = 168;
   CFG.IP3 = 1;
@@ -119,28 +119,7 @@ void SystemFactoryReset()
   CFG.MK2 = 255;
   CFG.MK3 = 255;
   CFG.MK4 = 0;
-
-  HCONF.bright = 90;
-  HCONF.T1_offset = 0;
-  HCONF.T2_offset = 0;
-
-  ColorSet(&col_carnum, WHITE);
-  ColorSet(&col_runtext, YELLOW);
-  ColorSet(&col_time, WHITE);
-  ColorSet(&col_date, WHITE);
-  ColorSet(&col_tempin, GREEN);
-  ColorSet(&col_tempout, BLUE);
-
-  UserText.run_mode = true;
-  UserText.hide_t = false;
-  UserText.speed = 20;
-  UserText.carnum = 7;
-
-  memset(UserText.runtext, 0, strlen(UserText.runtext));
-  strcat(UserText.runtext, " ");
-
-  memset(UserText.carname, 0, strlen(UserText.carname));
-  strcat(UserText.carname, "Вагон ");
+  CFG.gps_speed = 9600;
 }
 
 /***************************************************************************************/
@@ -200,16 +179,6 @@ void SendXMLUserData(char *msg)
   char buf_crc[256] = "";
   char xml[256] = "";
 
-  if (CFG.TimeZone == 0)
-  {
-    strcat(buf_crc, "<gmt>");
-  }
-  else if (CFG.TimeZone < 0)
-  {
-    strcat(buf_crc, "<gmt>-");
-  }
-  else
-    strcat(buf_crc, "<gmt>+");
 
   itoa(CFG.TimeZone, buf_crc + strlen(buf_crc), DEC);
   strcat(buf_crc, "</gmt>\r\n");
@@ -223,35 +192,12 @@ void SendXMLUserData(char *msg)
   strcat(buf_crc, "<lon></lon>\r\n");
   strcat(buf_crc, "<speed></speed>\r\n");
 
-  strcat(buf_crc, "<temp1>");
-  if (HCONF.dsT1 <= -100 or HCONF.dsT1 == 85)
-  {
-    strcat(buf_crc, "N/A");
-    strcat(buf_crc, "</temp1>\r\n");
-  }
-  else
-  {
-    itoa(HCONF.dsT1, buf_crc + strlen(buf_crc), DEC);
-    strcat(buf_crc, "</temp1>\r\n");
-  }
-
-  strcat(buf_crc, "<temp2>");
-  if (HCONF.dsT2 <= -100 or HCONF.dsT2 == 85)
-  {
-    strcat(buf_crc, "N/A");
-    strcat(buf_crc, "</temp2>\r\n");
-  }
-  else
-  {
-    itoa(HCONF.dsT2, buf_crc + strlen(buf_crc), DEC);
-    strcat(buf_crc, "</temp2>\r\n");
-  }
 
   strcat(buf_crc, "<auxtext1>");
   strcat(buf_crc, msg);
   strcat(buf_crc, "</auxtext1>\r\n");
 
-  crc = CRC16_mb(buf_crc, strlen(buf_crc));
+  // crc = CRC16_mb(buf_crc, strlen(buf_crc));
 
   strcat(xml, "<gps_data>\r\n");
   strcat(xml, buf_crc);
@@ -303,43 +249,8 @@ void SendXMLDataD()
   strcat(buf_crc, "<lon></lon>\r\n");
   strcat(buf_crc, "<speed></speed>\r\n");
 
-  strcat(buf_crc, "<temp1>");
-  if (HCONF.dsT1 <= -100 or HCONF.dsT1 == 85)
-  {
-    strcat(buf_crc, "N/A");
-    strcat(buf_crc, "</temp1>\r\n");
-  }
-  else
-  {
-    itoa(HCONF.dsT1, buf_crc + strlen(buf_crc), DEC);
-    strcat(buf_crc, "</temp1>\r\n");
-  }
 
-  strcat(buf_crc, "<temp2>");
-  if (HCONF.dsT2 <= -100 or HCONF.dsT2 == 85)
-  {
-    strcat(buf_crc, "N/A");
-    strcat(buf_crc, "</temp2>\r\n");
-  }
-  else
-  {
-    itoa(HCONF.dsT2, buf_crc + strlen(buf_crc), DEC);
-    strcat(buf_crc, "</temp2>\r\n");
-  }
-  strcat(buf_crc, "<auxtext1>");
-  if (UserText.hide_t == false)
-  {
-    strcat(buf_crc, UserText.carname);
-    strcat(buf_crc, " ");
-    itoa(UserText.carnum, buf_crc + strlen(buf_crc), DEC);
-  }
-  else
-  {
-    strcat(buf_crc, UserText.carname);
-  }
-  strcat(buf_crc, "</auxtext1>\r\n");
-
-  crc = CRC16_mb(buf_crc, strlen(buf_crc));
+  // crc = CRC16_mb(buf_crc, strlen(buf_crc));
 
   strcat(xml, "<gps_data>\r\n");
   strcat(xml, buf_crc);
@@ -353,251 +264,6 @@ void SendXMLDataD()
 
   Serial2.println(xml);
   Serial2.println();
-}
-//=========================================================================
-
-//=========================================================================
-void SendXMLDataS()
-{
-  unsigned int crc;
-  char buf_crc[4096] = "";
-  char xml[3072] = "";
-
-  strcat(buf_crc, "<adr id=\"1\">\r\n");
-  strcat(buf_crc, "<cabin_mode>0</cabin_mode>\r\n");
-  strcat(buf_crc, "<TsizeDx>\r\n");
-  strcat(buf_crc, "<X>128</X>\r\n");
-  strcat(buf_crc, "<Y>64</Y>\r\n");
-  strcat(buf_crc, "</TsizeDx>\r\n");
-  strcat(buf_crc, "<TsizeMx>\r\n");
-  strcat(buf_crc, "<X>2</X>\r\n");
-  strcat(buf_crc, "<Y>2</Y>\r\n");
-  strcat(buf_crc, "</TsizeMx>\r\n");
-  strcat(buf_crc, "<TsizeLx>\r\n");
-  strcat(buf_crc, "<X>256</X>\r\n");
-  strcat(buf_crc, "<Y>128</Y>\r\n");
-  strcat(buf_crc, "</TsizeLx>\r\n");
-  strcat(buf_crc, "<rgb>1</rgb>\r\n");
-  strcat(buf_crc, "<rgb_balance>\r\n");
-  strcat(buf_crc, "<R>0</R>\r\n");
-  strcat(buf_crc, "<G>0</G>\r\n");
-  strcat(buf_crc, "<B>0</B>\r\n");
-  strcat(buf_crc, "</rgb_balance>\r\n");
-  strcat(buf_crc, "<min_bright>");
-  itoa(HCONF.bright, buf_crc + strlen(buf_crc), DEC);
-  strcat(buf_crc, "</min_bright>\r\n");
-  strcat(buf_crc, "<max_bright>100</max_bright>\r\n");
-  strcat(buf_crc, "<auto_bright>0</auto_bright>\r\n");
-  strcat(buf_crc, "<zones>6</zones>\r\n");
-  strcat(buf_crc, "\r\n");
-
-  //=============== ZONE 1 ================
-  strcat(buf_crc, "<zone id=\"1\">\r\n");
-  strcat(buf_crc, "<startX>1</startX>\r\n");
-  strcat(buf_crc, "<startY>1</startY>\r\n");
-  strcat(buf_crc, "<size>\r\n");
-  strcat(buf_crc, "<X>74</X>\r\n");
-  strcat(buf_crc, "<Y>16</Y>\r\n");
-  strcat(buf_crc, "</size>\r\n");
-  strcat(buf_crc, "<color>\r\n");
-  // Carnum Color
-  ColorWrite(buf_crc, &col_carnum);
-  // Carnum color END
-  strcat(buf_crc, "</color>\r\n");
-  strcat(buf_crc, "<bgcolor>\r\n");
-  strcat(buf_crc, "<R>0</R>\r\n");
-  strcat(buf_crc, "<G>0</G>\r\n");
-  strcat(buf_crc, "<B>0</B>\r\n");
-  strcat(buf_crc, "</bgcolor>\r\n");
-  strcat(buf_crc, "<mode>0</mode>\r\n");
-  strcat(buf_crc, "<align>center</align>\r\n");
-
-  // Carname and Carnum Text
-  strcat(buf_crc, "<text>");
-  strcat(buf_crc, "$auxtext1");
-  // strcat(buf_crc, UserText.carname);
-  // strcat(buf_crc, " ");
-  // itoa(UserText.carnum, buf_crc + strlen(buf_crc), DEC);
-
-  strcat(buf_crc, "</text>\r\n");
-  // Carnum Text END
-  strcat(buf_crc, "<font>[16=0+14+2]2+medium+condensed+regular.font</font>\r\n");
-  strcat(buf_crc, "</zone>\r\n");
-  strcat(buf_crc, "\r\n");
-  //=======================================
-
-  //=============== ZONE 2 ================
-  strcat(buf_crc, "<zone id=\"2\">\r\n");
-  strcat(buf_crc, "<startX>80</startX>\r\n");
-  strcat(buf_crc, "<startY>1</startY>\r\n");
-  strcat(buf_crc, "<size>\r\n");
-  strcat(buf_crc, "<X>49</X>\r\n");
-  strcat(buf_crc, "<Y>16</Y>\r\n");
-  strcat(buf_crc, "</size>\r\n");
-  strcat(buf_crc, "<color>\r\n");
-  // Time Color
-  ColorWrite(buf_crc, &col_time);
-  // Time Color END
-  strcat(buf_crc, "</color>\r\n");
-  strcat(buf_crc, "<bgcolor>\r\n");
-  strcat(buf_crc, "<R>0</R>\r\n");
-  strcat(buf_crc, "<G>0</G>\r\n");
-  strcat(buf_crc, "<B>0</B>\r\n");
-  strcat(buf_crc, "</bgcolor>\r\n");
-  strcat(buf_crc, "<mode>0</mode>\r\n");
-  strcat(buf_crc, "<align>center</align>\r\n");
-  strcat(buf_crc, "<text>$time</text>\r\n");
-  strcat(buf_crc, "<font>[16=0+14+2]2+medium+condensed+regular.font</font>\r\n");
-  strcat(buf_crc, "</zone>\r\n");
-  strcat(buf_crc, "\r\n");
-  //=======================================
-
-  //=============== ZONE 3 ================
-  strcat(buf_crc, "<zone id=\"3\">\r\n");
-  strcat(buf_crc, "<startX>1</startX>\r\n");
-  strcat(buf_crc, "<startY>17</startY>\r\n");
-  strcat(buf_crc, "<size>\r\n");
-  strcat(buf_crc, "<X>74</X>\r\n");
-  strcat(buf_crc, "<Y>16</Y>\r\n");
-  strcat(buf_crc, "</size>\r\n");
-  strcat(buf_crc, "<color>\r\n");
-  // Run Text Color
-  ColorWrite(buf_crc, &col_runtext);
-  // Run Text Color END
-  strcat(buf_crc, "</color>\r\n");
-  strcat(buf_crc, "<bgcolor>\r\n");
-  strcat(buf_crc, "<R>0</R>\r\n");
-  strcat(buf_crc, "<G>0</G>\r\n");
-  strcat(buf_crc, "<B>0</B>\r\n");
-  strcat(buf_crc, "</bgcolor>\r\n");
-  // Set mode run Text
-  strcat(buf_crc, "<mode>");
-  itoa(UserText.run_mode, buf_crc + strlen(buf_crc), DEC);
-  strcat(buf_crc, "</mode>\r\n");
-  strcat(buf_crc, "<direction>RTL</direction>\r\n");
-  strcat(buf_crc, "<speed>");
-  itoa(UserText.speed, buf_crc + strlen(buf_crc), DEC);
-  strcat(buf_crc, "</speed>\r\n");
-  // Run Text Data Start
-  strcat(buf_crc, "<text>");
-  strcat(buf_crc, UserText.runtext);
-  strcat(buf_crc, "</text>\r\n");
-  // Run Text Data END
-  strcat(buf_crc, "<font>[16=0+14+2]2+medium+condensed+regular.font</font>\r\n");
-  strcat(buf_crc, "</zone>\r\n");
-  strcat(buf_crc, "\r\n");
-  //=======================================
-
-  //=============== ZONE 4 ================
-  strcat(buf_crc, "<zone id=\"4\">\r\n");
-  strcat(buf_crc, "<startX>80</startX>\r\n");
-  strcat(buf_crc, "<startY>17</startY>\r\n");
-  strcat(buf_crc, "<size>\r\n");
-  strcat(buf_crc, "<X>49</X>\r\n");
-  strcat(buf_crc, "<Y>8</Y>\r\n");
-  strcat(buf_crc, "</size>\r\n");
-  strcat(buf_crc, "<color>\r\n");
-  // Date Color Start
-  ColorWrite(buf_crc, &col_date);
-  // Date Color END
-  strcat(buf_crc, "</color>\r\n");
-  strcat(buf_crc, "<bgcolor>\r\n");
-  strcat(buf_crc, "<R>0</R>\r\n");
-  strcat(buf_crc, "<G>0</G>\r\n");
-  strcat(buf_crc, "<B>0</B>\r\n");
-  strcat(buf_crc, "</bgcolor>\r\n");
-  strcat(buf_crc, "<mode>0</mode>\r\n");
-  strcat(buf_crc, "<align>center</align>\r\n");
-  strcat(buf_crc, "<text>$dd $mm1</text>\r\n");
-  strcat(buf_crc, "<font>[8=0+7+1]1+thin+condensed+regular.font</font>\r\n");
-  strcat(buf_crc, "</zone>\r\n");
-  strcat(buf_crc, "\r\n");
-  //=======================================
-
-  //=============== ZONE 5 ================
-  strcat(buf_crc, "<zone id=\"5\">\r\n");
-  strcat(buf_crc, "<startX>80</startX>\r\n");
-  strcat(buf_crc, "<startY>26</startY>\r\n");
-  strcat(buf_crc, "<size>\r\n");
-  strcat(buf_crc, "<X>24</X>\r\n");
-  strcat(buf_crc, "<Y>8</Y>\r\n");
-  strcat(buf_crc, "</size>\r\n");
-  strcat(buf_crc, "<color>\r\n");
-  // TempIN Color Start
-  ColorWrite(buf_crc, &col_tempin);
-  // TempIN Color END
-  strcat(buf_crc, "</color>\r\n");
-  strcat(buf_crc, "<bgcolor>\r\n");
-  strcat(buf_crc, "<R>0</R>\r\n");
-  strcat(buf_crc, "<G>0</G>\r\n");
-  strcat(buf_crc, "<B>0</B>\r\n");
-  strcat(buf_crc, "</bgcolor>\r\n");
-  strcat(buf_crc, "<mode>0</mode>\r\n");
-  strcat(buf_crc, "<align>center</align>\r\n");
-  strcat(buf_crc, "<text>$temp1°C</text>\r\n");
-  strcat(buf_crc, "<font>[8=0+7+1]1+thin+condensed+regular.font</font>\r\n");
-  strcat(buf_crc, "</zone>\r\n");
-  strcat(buf_crc, "\r\n");
-  //=======================================
-
-  //=============== ZONE 5 ================
-  strcat(buf_crc, "<zone id=\"6\">\r\n");
-  strcat(buf_crc, "<startX>105</startX>\r\n");
-  strcat(buf_crc, "<startY>26</startY>\r\n");
-  strcat(buf_crc, "<size>\r\n");
-  strcat(buf_crc, "<X>24</X>\r\n");
-  strcat(buf_crc, "<Y>8</Y>\r\n");
-  strcat(buf_crc, "</size>\r\n");
-  strcat(buf_crc, "<color>\r\n");
-  // TempOUT Color Start
-  ColorWrite(buf_crc, &col_tempout);
-  // TempOUT Color END
-  strcat(buf_crc, "</color>\r\n");
-  strcat(buf_crc, "<bgcolor>\r\n");
-  strcat(buf_crc, "<R>0</R>\r\n");
-  strcat(buf_crc, "<G>0</G>\r\n");
-  strcat(buf_crc, "<B>0</B>\r\n");
-  strcat(buf_crc, "</bgcolor>\r\n");
-  strcat(buf_crc, "<mode>0</mode>\r\n");
-  strcat(buf_crc, "<align>center</align>\r\n");
-  strcat(buf_crc, "<text>$temp2°C</text>\r\n");
-  strcat(buf_crc, "<font>[8=0+7+1]1+thin+condensed+regular.font</font>\r\n");
-  strcat(buf_crc, "</zone>\r\n");
-  strcat(buf_crc, "\r\n");
-  //=======================================
-
-  strcat(buf_crc, "</adr>\r\n");
-  crc = CRC16_mb(buf_crc, strlen(buf_crc));
-
-  strcat(xml, "<extboard_data>\r\n");
-  strcat(xml, buf_crc);
-  strcat(xml, "<extboard_crc>");
-
-  char crc_temp[5] = {0};
-  sprintf(crc_temp, "%04X", crc);
-  strcat(xml, crc_temp);
-  // itoa(crc, xml + strlen(xml), HEX);
-  strcat(xml, "</extboard_crc>\r\n");
-  strcat(xml, "</extboard_data>");
-  Serial2.println(xml);
-  Serial2.println();
-  // delay(100);
-  // Serial.println(F("======================================="));
-  // Serial.print("Buffer CRC: \r\n");
-  // Serial.println(xml);
-  // _size = strlen(xml);
-  // Serial.print("Size:");
-  // Serial.println(_size);
-  // // Serial.print("CRC:");
-  // // Serial.println(crc, HEX);
-
-  // // Serial.print("Buffer GPS_DATA: \r\n");
-  // // Serial.println(xml);
-
-  // // _size = strlen(xml);
-  // // Serial.print("Size:");
-  // // Serial.println(_size);
-  // Serial.println(F("======================================="));
 }
 //=========================================================================
 

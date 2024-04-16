@@ -11,8 +11,6 @@ void HTTPinit()
   // ElegantOTA.begin(&HTTP); // Start ElegantOTA
   HTTP.on("/update.json", UpdateData);
   HTTP.on("/SysUPD", SystemUpdate);
-  HTTP.on("/TextUPD", TextUpdate);
-  HTTP.on("/ColUPD", ColorUpdate);
   HTTP.on("/SNUPD", SerialNumberUPD);
   HTTP.on("/WiFiUPD", SaveSecurity);
   HTTP.on("/BRBT", Restart); // Restart MCU
@@ -111,10 +109,6 @@ void SystemUpdate()
   S.MO = atoi(strtok(NULL, "-"));
   S.D = atoi(strtok(NULL, "-"));
 
-  HCONF.T1_offset = HTTP.arg("T1O").toInt();
-  HCONF.T2_offset = HTTP.arg("T2O").toInt();
-  HCONF.bright = HTTP.arg("BR").toInt();
-
   Clock.hour = S.H;
   Clock.minute = S.M;
   Clock.year = S.Y;
@@ -128,16 +122,9 @@ void SystemUpdate()
   Serial.println(msg);
   sprintf(msg, "DataRTC: %0004d.%02d.%02d", Clock.year, Clock.month, Clock.date);
   Serial.println(msg);
-  Serial.printf("T1_OFFset: %d", HCONF.T1_offset);
-  Serial.println();
-  Serial.printf("T2_OFFset: %d", HCONF.T2_offset);
-  Serial.println();
-  Serial.printf("Brigh: %d", HCONF.bright);
-  Serial.println();
 #endif
 
   RTC.setTime(Clock);
-  SaveConfig();
   STATE.StaticUPD = true;
   STATE.cnt_Supd = 0;
 
@@ -150,113 +137,9 @@ void SystemUpdate()
 /*******************************************************************************************************/
 
 /*******************************************************************************************************/
-void TextUpdate()
-{
-  char TempBuf[10];
-  char msg[512] = {0};
-
-  struct _txt
-  {
-    char TN[17];     // car_name
-    char TI[1024];   // text info
-    uint8_t TNU = 0; // car num
-    bool SW = true;
-    bool SWH = false;
-    uint8_t SP = 0;
-  } T;
-
-  HTTP.arg("TN").toCharArray(T.TN, 17);
-  T.TNU = HTTP.arg("TNU").toInt();
-  HTTP.arg("TI").toCharArray(T.TI, 1024);
-  T.SW = HTTP.arg("SW").toInt();
-  T.SWH = HTTP.arg("SWH").toInt();
-  T.SP = HTTP.arg("SP").toInt();
-
-  memset(UserText.carname, 0, strlen(UserText.carname));
-  strcat(UserText.carname, T.TN);
-
-  memset(UserText.runtext, 0, strlen(UserText.runtext));
-  strcat(UserText.runtext, T.TI);
-
-  UserText.run_mode = T.SW;
-  UserText.speed = T.SP;
-  UserText.carnum = T.TNU;
-
-  if (T.SWH != UserText.hide_t)
-  {
-    UserText.hide_t = T.SWH;
-    SendXMLDataD();
-  }
-
-  // #ifndef DEBUG
-  //   Serial.printf("Name: ");
-  //   Serial.printf(T.TN);
-  //   Serial.println(msg);
-
-  //   Serial.printf("CarNum: ");
-  //   Serial.println(T.TNU);
-
-  //   Serial.printf("Info: ");
-  //   Serial.printf(T.TI);
-  //   Serial.println(msg);
-
-  //   Serial.printf("RunText: %d", T.SW);
-  //   Serial.println();
-  //   Serial.printf("Speed: %d", T.SP);
-  //   Serial.println();
-  // #endif
-
-  // SaveConfig();
-  // ShowLoadJSONConfig();
-
-  // Show Led state (add function)
-
-  Serial.println("Text Update");
-  HTTP.send(200, "text/plain", "OK");
-}
-/*******************************************************************************************************/
-
-/*******************************************************************************************************/
 void ColorUpdate()
 {
   char TempBuf[10];
-
-  struct _col
-  {
-    uint8_t CC = HTTP.arg("CC").toInt();
-    uint8_t CI = HTTP.arg("CI").toInt();
-    uint8_t CT = HTTP.arg("CT").toInt();
-    uint8_t CD = HTTP.arg("CD").toInt();
-    uint8_t CTI = HTTP.arg("CTI").toInt();
-    uint8_t CTO = HTTP.arg("CTO").toInt();
-  } C;
-
-  // #ifndef DEBUG
-  //   Serial.printf("Color CarNum: %d", C.CC);
-  //   Serial.println();
-  //   Serial.printf("Color InfoText: %d", C.CI);
-  //   Serial.println();
-  //   Serial.printf("Color Time: %d", C.CT);
-  //   Serial.println();
-  //   Serial.printf("Color Date: %d", C.CD);
-  //   Serial.println();
-  //   Serial.printf("Color TempIN: %d", C.CTI);
-  //   Serial.println();
-  //   Serial.printf("Color TempOUT: %d", C.CTO);
-  //   Serial.println();
-  // #endif
-
-  ColorSet(&col_carnum, C.CC);
-  ColorSet(&col_runtext, C.CI);
-  ColorSet(&col_time, C.CT);
-  ColorSet(&col_date, C.CD);
-  ColorSet(&col_tempin, C.CTI);
-  ColorSet(&col_tempout, C.CTO);
-
-  SaveConfig();
-  STATE.StaticUPD = true;
-  STATE.cnt_Supd = 0;
-  // ShowLoadJSONConfig();
 
   Serial.println("Сolor Update");
   HTTP.send(200, "text/plain", "OK");

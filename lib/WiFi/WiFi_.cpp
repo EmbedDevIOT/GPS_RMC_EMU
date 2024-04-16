@@ -82,7 +82,7 @@ void CheckWiFiStatus()
       if (DisconnectTime == 300) // 5 min
       {
          DisconnectTime = 0;
-         digitalWrite(LED_WiFi, LOW);
+         digitalWrite(LED_ST, LOW);
          WIFIinit();
       }
    }
