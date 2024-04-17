@@ -39,7 +39,7 @@ void HandlerCore0(void *pvParameters)
     Serial.println(xPortGetCoreID());
     for (;;)
     {
-        // HandleClient();
+        HandleClient();
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
@@ -88,11 +88,11 @@ void setup()
 
     ShowLoadJSONConfig();
 
-    // WIFIinit();
-    // delay(1000);
+    WIFIinit();
+    delay(1000);
 
-    // HTTPinit(); // HTTP server initialisation
-    // delay(100);
+    HTTPinit(); // HTTP server initialisation
+    delay(100);
 
     for (uint8_t i = 0; i < 5; i++)
     {

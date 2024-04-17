@@ -2,6 +2,7 @@
 // Start "INDEX"
 function StartIndex() {
     getConfig("index");   	   // Load configuration or  config.json 	
+    getUpdate();
 }
 
 // Start "Network_Config"
@@ -12,7 +13,6 @@ function StartNetConfig() {
 // Start "System"
 function StartSystem() {
     getConfig("system");
-    getUpdate();
 }
 
 // Start "System"
@@ -46,49 +46,10 @@ function getConfig(information) {
 
             if (information == "index") {
                 document.getElementById("sn").value = jsonBuf["sn"];
-                document.getElementById("carname").value = jsonBuf["carname"];
-                document.getElementById("carnum").value = jsonBuf["carnum"];
-                document.getElementById("infotext").value = jsonBuf["infotext"];
-                document.getElementById("speed").value = jsonBuf["speed"];
-                document.getElementById("c_carnum").value = jsonBuf["c_carnum"];
-                document.getElementById("c_infotext").value = jsonBuf["c_infotext"];
-                document.getElementById("c_time").value = jsonBuf["c_time"];
-                document.getElementById("c_date").value = jsonBuf["c_date"];
-                document.getElementById("c_tempin").value = jsonBuf["c_tempin"];
-                document.getElementById("c_tempout").value = jsonBuf["c_tempout"];
-
-
-                if (jsonBuf["runtext"] == 1) {
-                    const element1 = document.getElementById("sw_runtext");
-                    const attribute = document.createAttribute('checked');
-                    element1.setAttributeNode(attribute);
-                }
-                else {
-                    document.getElementById("sw_runtext").removeAttribute('checked');
-                }
-
-                if (jsonBuf["hide"] == 1) {
-                    const element1 = document.getElementById("sw_hide");
-                    const attribute = document.createAttribute('checked');
-                    element1.setAttributeNode(attribute);
-                }
-                else {
-                    document.getElementById("sw_hide").removeAttribute('checked');
-                }
-            }
-            else if (information == "network") {
-                document.getElementById("wifiip").value = jsonBuf["ip1"] + '.' + jsonBuf["ip2"] + '.' + jsonBuf["ip3"] + '.' + jsonBuf["ip4"];
-                document.getElementById("ssid_name").value = jsonBuf["ssid"];
-            }
-            else if (information == "system") {
-                document.getElementById("t1_offset").value = jsonBuf["t1_offset"];
-                document.getElementById("t2_offset").value = jsonBuf["t2_offset"];
-                document.getElementById("brigh").value = jsonBuf["br"];
-            }
-            else if (information == "shortcut") {
-                document.getElementById("sn").value = jsonBuf["sn"];
                 document.getElementById("firmware").value = jsonBuf["firmware"];
             }
+
+     
         }
 
         // if (jsonBuf["sn"] == 0) {
@@ -110,68 +71,27 @@ function getUpdate() {
     // setTimeout("getUpdate()", 1000);
 }
 
-
-function AllDataUPD() {
-    let xml = new XMLHttpRequest();
-    let buf = "?";
-
-    var sw = document.getElementById("sw_runtext")
-    var isCheck = sw.checked;
-
-
-    buf += "TN=" + document.getElementById("carname").value + "&";
-    buf += "TNU=" + document.getElementById("carnum").value + "&";
-    buf += "TI=" + document.getElementById("infotext").value + "&";
-
-    if (isCheck) {
-        buf += "SW=" + 1 + "&";
-    } else buf += "SW=" + 0 + "&";
-
-    sw = document.getElementById("sw_hide");
-    isCheck = sw.checked;
-    if (isCheck) {
-        buf += "SWH=" + 1 + "&";
-    } else buf += "SWH=" + 0 + "&";
-
-    buf += "SP=" + document.getElementById("speed").value;
-
-    xml.open("GET", "TextUPD" + buf, 1);
-    xml.send();
-    setTimeout("BColUPD()", 200);
-    // console.log(xml);
-}
-
-function BColUPD() {
-    let xml = new XMLHttpRequest();
-    let buf = "?";
-
-    buf += "CC=" + document.getElementById("c_carnum").value + "&";
-    buf += "CI=" + document.getElementById("c_infotext").value + "&";
-    buf += "CT=" + document.getElementById("c_time").value + "&";
-    buf += "CD=" + document.getElementById("c_date").value + "&";
-    buf += "CTI=" + document.getElementById("c_tempin").value + "&";
-    buf += "CTO=" + document.getElementById("c_tempout").value;
-
-    xml.open("GET", "ColUPD" + buf, 1);
-    xml.send();
-    alert("Настройки сохранены. Обновление займет до 10 сек.");
-    console.log(xml);
-}
-
-function BSysUPD() {
+function BTimeSet() {
     let xml = new XMLHttpRequest();
     let buf = "?";
     buf += "T=" + document.getElementById("time").value + "&";
-    buf += "D=" + document.getElementById("date").value + "&";
-    buf += "T1O=" + document.getElementById("t1_offset").value + "&";
-    buf += "T2O=" + document.getElementById("t2_offset").value + "&";
-    buf += "BR=" + document.getElementById("brigh").value;
+    buf += "D=" + document.getElementById("date").value;
 
     xml.open("GET", "SysUPD" + buf, 1);
     console.log(xml);
     xml.send();
     alert("Настройки сохранены.");
+}
 
+function BTimeAutoSet() {
+    let xml = new XMLHttpRequest();
+    let buf = "?";
+
+
+    xml.open("GET", "AutoSet" + buf, 1);
+    console.log(xml);
+    xml.send();
+    alert("Настройки сохранены.");
 }
 
 function BWiFiUPD() {

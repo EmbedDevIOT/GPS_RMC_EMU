@@ -128,22 +128,11 @@ void SystemUpdate()
   STATE.StaticUPD = true;
   STATE.cnt_Supd = 0;
 
-  // ShowLoadJSONConfig();
-
   // Show Led state (add function)
   Serial.println("System Update");
   HTTP.send(200, "text/plain", "OK");
 }
 /*******************************************************************************************************/
-
-/*******************************************************************************************************/
-void ColorUpdate()
-{
-  char TempBuf[10];
-
-  Serial.println("Сolor Update");
-  HTTP.send(200, "text/plain", "OK");
-}
 
 /*******************************************************************************************************/
 void SerialNumberUPD()
