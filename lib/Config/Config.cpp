@@ -167,105 +167,75 @@ void getDateChar(char *array)
 }
 /*****************************************************************************************/
 
-/*****************************************************************************************/
-void SendXMLUserData(char *msg)
-{
-
-  getTimeChar(CFG.time);
-  getDateChar(CFG.date);
-
-  unsigned int crc;
-
-  char buf_crc[256] = "";
-  char xml[256] = "";
-
-
-  itoa(CFG.TimeZone, buf_crc + strlen(buf_crc), DEC);
-  strcat(buf_crc, "</gmt>\r\n");
-  strcat(buf_crc, "<time>");
-  strcat(buf_crc, CFG.time);
-  strcat(buf_crc, "</time>\r\n");
-  strcat(buf_crc, "<date>");
-  strcat(buf_crc, CFG.date);
-  strcat(buf_crc, "</date>\r\n");
-  strcat(buf_crc, "<lat></lat>\r\n");
-  strcat(buf_crc, "<lon></lon>\r\n");
-  strcat(buf_crc, "<speed></speed>\r\n");
-
-
-  strcat(buf_crc, "<auxtext1>");
-  strcat(buf_crc, msg);
-  strcat(buf_crc, "</auxtext1>\r\n");
-
-  // crc = CRC16_mb(buf_crc, strlen(buf_crc));
-
-  strcat(xml, "<gps_data>\r\n");
-  strcat(xml, buf_crc);
-  strcat(xml, "<gps_crc>");
-
-  char crc_temp[5] = {0};
-
-  sprintf(crc_temp, "%04X", crc);
-  strcat(xml, crc_temp);
-  strcat(xml, "</gps_crc>\r\n");
-  strcat(xml, "</gps_data>");
-
-  Serial2.println(xml);
-  Serial2.println();
-}
-/*****************************************************************************************/
-
-/*****************************************************************************************/
-void SendXMLDataD()
+void Build_and_SendRMC()
 {
   getTimeChar(CFG.time);
   getDateChar(CFG.date);
 
-  unsigned int crc;
+  unsigned int CRC;
 
-  char buf_crc[256] = "";
-  char xml[256] = "";
+  char buf[32] = "";
+  char GNRMC[128] = "$GNRMC,";
 
-  if (CFG.TimeZone == 0)
-  {
-    strcat(buf_crc, "<gmt>");
-  }
-  else if (CFG.TimeZone < 0)
-  {
-    strcat(buf_crc, "<gmt>-");
-  }
-  else
-    strcat(buf_crc, "<gmt>+");
+  sprintf(buf, "%02u", Clock.hour);
+  strcat(GNRMC, buf);
+  sprintf(buf, "%02u", Clock.minute);
+  strcat(GNRMC, buf);
+  sprintf(buf, "%02u", Clock.second);
+  strcat(GNRMC, buf);
+  strcat(GNRMC, ".000,A,5500.8041,N,08238.2697,E,0.00,,");
+  strcat(GNRMC, CFG.date);
+  strcat(GNRMC, ",,,A,V*");
 
-  itoa(CFG.TimeZone, buf_crc + strlen(buf_crc), DEC);
-  strcat(buf_crc, "</gmt>\r\n");
-  strcat(buf_crc, "<time>");
-  strcat(buf_crc, CFG.time);
-  strcat(buf_crc, "</time>\r\n");
-  strcat(buf_crc, "<date>");
-  strcat(buf_crc, CFG.date);
-  strcat(buf_crc, "</date>\r\n");
-  strcat(buf_crc, "<lat></lat>\r\n");
-  strcat(buf_crc, "<lon></lon>\r\n");
-  strcat(buf_crc, "<speed></speed>\r\n");
-
-
-  // crc = CRC16_mb(buf_crc, strlen(buf_crc));
-
-  strcat(xml, "<gps_data>\r\n");
-  strcat(xml, buf_crc);
-  strcat(xml, "<gps_crc>");
+  CRC = nmea_get_checksum(GNRMC);
   char crc_temp[5] = {0};
-  sprintf(crc_temp, "%04X", crc);
-  strcat(xml, crc_temp);
-  // itoa(crc, xml + strlen(xml), HEX);
-  strcat(xml, "</gps_crc>\r\n");
-  strcat(xml, "</gps_data>");
-
-  Serial2.println(xml);
-  Serial2.println();
+  sprintf(crc_temp, "%X", CRC);
+  strcat(GNRMC, crc_temp);
+  Serial2.println(GNRMC);
+  // Serial.println(GNRMC);
 }
-//=========================================================================
+
+void Build_and_SendGGA()
+{
+  unsigned int CRC;
+
+  char buf[32] = "";
+  char GGA[128] = "$GPGGA,";
+
+  getTimeChar(CFG.time);
+  getDateChar(CFG.date);
+
+  sprintf(buf, "%02u", Clock.hour);
+  strcat(GGA, buf);
+  sprintf(buf, "%02u", Clock.minute);
+  strcat(GGA, buf);
+  sprintf(buf, "%02u", Clock.second);
+  strcat(GGA, buf);
+
+  strcat(GGA, ".000,5500.8041,N,08238.2697,E,1,4,3.14,4345.7,M,-36.1,M,,*");
+
+  CRC = nmea_get_checksum(GGA);
+  char crc_temp[5] = {0};
+  sprintf(crc_temp, "%X", CRC);
+  strcat(GGA, crc_temp);
+  Serial2.println(GGA);
+  // Serial.println(GGA);
+}
+
+void Build_and_SendNMEA()
+{
+  char msg[70];
+  Build_and_SendRMC();
+
+  strcat(msg, "$GVTG,,T,,M,0.00,N,0.00,K,A*23");
+  Serial2.println(msg);
+
+  Build_and_SendGGA();
+  memset(msg,0, strlen(msg));
+
+  strcat(msg, "$GNGSA,A,3,10,23,24,32,,,,,,,,,3.29,3.14,0.98,1*09");
+  Serial2.println(msg);
+}
 
 //======================= CRC Check summ calculators  =====================
 unsigned int CRC16_mb(char *buf, int len)
@@ -290,3 +260,41 @@ unsigned int CRC16_mb(char *buf, int len)
   return crc;
 }
 //=========================================================================
+
+//=======================     CRC NMEA checksumm      =====================
+int nmea0183_checksum(char *nmea_data)
+{
+  int crc = 0;
+  int i;
+
+  // the first $ sign and the last two bytes of original CRC + the * sign
+  for (i = 1; i < strlen(nmea_data) - 3; i++)
+  {
+    crc ^= nmea_data[i];
+  }
+
+  return crc;
+}
+//=========================================================================
+#define NMEA_END_CHAR_1 '\n'
+#define NMEA_MAX_LENGTH 70
+
+uint8_t nmea_get_checksum(const char *sentence)
+{
+  const char *n = sentence + 1; // Plus one, skip '$'
+  uint8_t chk = 0;
+
+  /* While current char isn't '*' or sentence ending (newline) */
+  while ('*' != *n && NMEA_END_CHAR_1 != *n)
+  {
+    if ('\0' == *n || n - sentence > NMEA_MAX_LENGTH)
+    {
+      /* Sentence too long or short */
+      return 0;
+    }
+    chk ^= (uint8_t)*n;
+    n++;
+  }
+
+  return chk;
+}

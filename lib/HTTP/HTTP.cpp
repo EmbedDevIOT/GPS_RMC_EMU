@@ -62,7 +62,7 @@ String getContentType(String filename)
   else if (filename.endsWith(".gif"))
     return "image/gif"; // Если файл заканчивается на ".gif", то возвращаем заголовок "image/gif" и завершаем выполнение функции
   else if (filename.endsWith(".svg"))
-    return "image/svg+xml"; 
+    return "image/svg+xml";
   else if (filename.endsWith(".ico"))
     return "image/x-icon"; // Если файл заканчивается на ".ico", то возвращаем заголовок "image/x-icon" и завершаем выполнение функции
   return "text/plain";     // Если ни один из типов файла не совпал, то считаем что содержимое файла текстовое, отдаем соответствующий заголовок и завершаем выполнение функции
@@ -212,7 +212,6 @@ void ShowSystemInfo()
 
   Serial.printf("System Information");
   sprintf(msg, "%s.%d", CFG.fw, CFG.sn);
-  SendXMLUserData(msg);
 
   HTTP.send(200, "text/plain", "OK"); // Oтправляем ответ Reset OK
 }

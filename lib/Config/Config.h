@@ -126,7 +126,10 @@ void SystemFactoryReset(void);
 void ShowFlashSave(void);
 void getTimeChar(char* array);
 void getDateChar(char* array);
-void SendXMLDataD(void);
-void SendXMLUserData(char* msg);
+void Build_and_SendRMC(void);
+void Build_and_SendGGA(void);
+void Build_and_SendNMEA(void);
+uint8_t nmea_get_checksum(const char *sentence);
+// void GPSFStart(void);
 //============================================================================
 #endif // _Config_H

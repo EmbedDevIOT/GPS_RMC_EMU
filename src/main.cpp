@@ -39,7 +39,7 @@ void HandlerCore0(void *pvParameters)
     Serial.println(xPortGetCoreID());
     for (;;)
     {
-        HandleClient();
+        // HandleClient();
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
@@ -52,15 +52,9 @@ void HandlerCore1(void *pvParameters)
     for (;;)
     {
         Clock = RTC.getTime();
-
         DebugInfo();
-        rmc_msg += "$GPRMC,";
-        rmc_msg += Clock.hour - 3;
-        rmc_msg += Clock.minute;
-        rmc_msg += Clock.second;
-        rmc_msg += ".000,A,5231.772,N,01324.117,E,777.4,084.4,120424,000.0,W*7C";
-        Serial2.println(rmc_msg);
-        rmc_msg.clear();
+
+        Build_and_SendNMEA();
 
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
@@ -70,59 +64,64 @@ void HandlerCore1(void *pvParameters)
 //=======================       S E T U P       =========================
 void setup()
 {
-    CFG.fw = "0.4";
-    CFG.fwdate = "16.04.2024";
+    CFG.fw = "0.5";
+    CFG.fwdate = "17.04.2024";
 
     Serial.begin(UARTSpeed);
     Serial2.begin(CFG.gps_speed);
 
     SystemInit();
-      // RTC INIT
-  RTC.begin();
-  // Low battery / RTC battery crash / Set time compilations
-  if (RTC.lostPower())
-  {
-    RTC.setTime(COMPILE_TIME);
-  }
-  Clock = RTC.getTime();
-  Serial.println(F("RTC...Done"));
+    // RTC INIT
+    RTC.begin();
+    // Low battery / RTC battery crash / Set time compilations
+    if (RTC.lostPower())
+    {
+        RTC.setTime(COMPILE_TIME);
+    }
+    Clock = RTC.getTime();
+    Serial.println(F("RTC...Done"));
 
-  EEP_Read();
-  byte errSPIFFS = SPIFFS.begin(true);
+    EEP_Read();
+    byte errSPIFFS = SPIFFS.begin(true);
 
-  LoadConfig(); // Load configuration from config.json files
+    LoadConfig(); // Load configuration from config.json files
 
-  ShowLoadJSONConfig();
+    ShowLoadJSONConfig();
 
-  WIFIinit();
-  delay(1000);
+    // WIFIinit();
+    // delay(1000);
 
-  HTTPinit(); // HTTP server initialisation
-  delay(1000);
+    // HTTPinit(); // HTTP server initialisation
+    // delay(100);
 
-  xTaskCreatePinnedToCore(
-      HandlerCore0,
-      "TaskCore_0",
-      10000,
-      NULL,
-      1,
-      &TaskCore_0,
-      0);
-  delay(500);
+    for (uint8_t i = 0; i < 5; i++)
+    {
+        Build_and_SendNMEA();
+        delay(1000);
+    }
 
-  xTaskCreatePinnedToCore(
-      HandlerCore1,
-      "TaskCore_1",
-      2048,
-      NULL,
-      1,
-      &TaskCore_1,
-      1);
-  delay(500);
+    xTaskCreatePinnedToCore(
+        HandlerCore0,
+        "TaskCore_0",
+        10000,
+        NULL,
+        1,
+        &TaskCore_0,
+        0);
+    delay(500);
 
+    xTaskCreatePinnedToCore(
+        HandlerCore1,
+        "TaskCore_1",
+        2048,
+        NULL,
+        1,
+        &TaskCore_1,
+        1);
+    delay(500);
 }
 //=======================================================================
 
 //=======================        L O O P        =========================
-void loop(){}
+void loop() {}
 //=======================================================================
