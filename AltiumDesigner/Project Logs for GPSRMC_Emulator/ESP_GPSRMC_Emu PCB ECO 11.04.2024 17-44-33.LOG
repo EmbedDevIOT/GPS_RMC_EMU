@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=BT1-2
+Removed Member From Class: ClassName=GPSRMC_Emulator Member=BT1
+Added Component: Designator=G1(BAT: BTH-R36-20)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "MP"; Value = "BH1220T-C-G"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=G1-2
+Added Pin To Net: NetName=NetD1_2 Pin=D1-2
+Added Pin To Net: NetName=NetD1_2 Pin=D2-14
+Added Pin To Net: NetName=NetD1_2 Pin=G1-1
+Added Pin To Net: NetName=NetD1_2 Pin=G1-1
+Added Net: Name=NetD1_2
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component G1 BAT

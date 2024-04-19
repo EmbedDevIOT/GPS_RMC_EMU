@@ -1,0 +1,251 @@
+Added Component: Designator=BT1(BAT: CH224-2032)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "MPD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "BH32T-C-G"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/BH32T-C-G/Memory%20Protection%20Devices/view-part/4219673/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=C1(EL Case A (3216-18))
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "HelpURL"; Value = "https://www.chipdip.ru/product/tecap-10-mkf-10-v-tip-a-10"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Китай"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "3.2 x 1.6 mm (LxW)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "TECAP10/10VA10"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10u"; VariantName = "[No Variations]"
+Added Component: Designator=C2(EL Case C (6032-28))
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "HelpURL"; Value = "https://www.chipdip.ru/product/tecap-100-mkf-6.3-v-tip-c-10"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Китай"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "3.2 x 6 mm (LxW)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "TECAP100/6,3VC, 10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100u"; VariantName = "[No Variations]"
+Added Component: Designator=C3(C0805(2013))
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.014"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "0.1u"; VariantName = "[No Variations]"
+Added Component: Designator=C4(C1206(3216))
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.085"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100n"; VariantName = "[No Variations]"
+Added Component: Designator=C5(EL Case C (6032-28))
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "HelpURL"; Value = "https://www.chipdip.ru/product/tecap-100-mkf-6.3-v-tip-c-10"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Китай"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "3.2 x 6 mm (LxW)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "TECAP100/6,3VC, 10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100u"; VariantName = "[No Variations]"
+Added Component: Designator=C6(C0805(2013))
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.014"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1mf"; VariantName = "[No Variations]"
+Added Component: Designator=C7(C0805(2013))
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.014"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10uf"; VariantName = "[No Variations]"
+Added Component: Designator=D1(SOD323)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.02"; VariantName = "[No Variations]"
+Added Component: Designator=D2(SO16-300)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Datasheet"; Value = "https://static.chipdip.ru/lib/859/DOC003859694.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key_Part_Number"; Value = "DS3231SN#T&R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key_Purchase_URL"; Value = "https://www.digikey.hk/product-detail/en/ohmite/FCSL76R005FER/FCSL76R005FERCT-ND/1853780?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Maxim Integrated Products"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "DS3231"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SO16"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=DD1(ESP32-WROOM-32D)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Bluetooth"; Value = "v4.2 BR/EDR и BLE"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://static.chipdip.ru/lib/789/DOC015789371.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Flash size"; Value = "16 МБ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "HelpURL"; Value = "https://www.studiopieters.nl/esp32-pinout/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Interface"; Value = "GPIO, SD, UART, SPI, SDIO, I2C, I2S, IR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Espressif"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "ESP32-WROOM-32D-N16"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PowerVCC"; Value = "2.7...3.6"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "WiFi"; Value = "802.11 b/g/n (802.11n до 150 Мбит/с)"; VariantName = "[No Variations]"
+Added Component: Designator=R1(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220"; VariantName = "[No Variations]"
+Added Component: Designator=R2(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=R3(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=R4(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Added Component: Designator=R5(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=R6(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=R7(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=R8(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220"; VariantName = "[No Variations]"
+Added Component: Designator=R9(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "5k"; VariantName = "[No Variations]"
+Added Component: Designator=R10(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Added Component: Designator=R11(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Added Component: Designator=R12(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Added Component: Designator=R13(R0805)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Price"; Value = "0.017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Added Component: Designator=SB1(BUT_SMT_Tact_Switch_6x6 mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Component Type"; Value = "Кнопка тактовая SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://static.chipdip.ru/lib/551/DOC001551970.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "HelpURL"; Value = "https://static.chipdip.ru/lib/937/DOC000937828.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "KLS electronic co ltd"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "6х6х4.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "L-KLS7-TS6604-4.3-180-B"; VariantName = "[No Variations]"
+Added Component: Designator=SB2(BUT_SMT_Tact_Switch_6x6 mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Component Type"; Value = "Кнопка тактовая SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://static.chipdip.ru/lib/551/DOC001551970.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "HelpURL"; Value = "https://static.chipdip.ru/lib/937/DOC000937828.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "KLS electronic co ltd"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "6х6х4.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "L-KLS7-TS6604-4.3-180-B"; VariantName = "[No Variations]"
+Added Component: Designator=VD1(Led 0805-Blue)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Color"; Value = "Blue"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet"; Value = "https://static.chipdip.ru/lib/736/DOC002736050.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "0.09"; VariantName = "[No Variations]"
+Added Component: Designator=X2(CON: PLS-5)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentKind"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "HelpURL"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Model"; Value = "DBG"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=BT1-2
+Added Pin To Net: NetName=+3V3 Pin=C1-1
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=+3V3 Pin=C2-1
+Added Pin To Net: NetName=GND Pin=C2-2
+Added Pin To Net: NetName=GND Pin=C3-1
+Added Pin To Net: NetName=+3V3 Pin=C3-2
+Added Pin To Net: NetName=+3V3 Pin=C4-1
+Added Pin To Net: NetName=GND Pin=C4-2
+Added Pin To Net: NetName=+3V3 Pin=C5-1
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=BOOT Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Pin To Net: NetName=EN/RST Pin=C7-1
+Added Pin To Net: NetName=GND Pin=C7-2
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD2_1 Pin=D2-1
+Added Pin To Net: NetName=+3V3 Pin=D2-2
+Added Pin To Net: NetName=NetD2_3 Pin=D2-3
+Added Pin To Net: NetName=GND Pin=D2-13
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-0
+Added Pin To Net: NetName=GND Pin=DD1-1
+Added Pin To Net: NetName=+3V3 Pin=DD1-2
+Added Pin To Net: NetName=GND Pin=DD1-15
+Added Pin To Net: NetName=GND Pin=DD1-38
+Added Pin To Net: NetName=+3V3 Pin=R1-1
+Added Pin To Net: NetName=NetD1_1 Pin=R1-2
+Added Pin To Net: NetName=NetD2_1 Pin=R2-1
+Added Pin To Net: NetName=+3V3 Pin=R2-2
+Added Pin To Net: NetName=NetD2_3 Pin=R3-1
+Added Pin To Net: NetName=+3V3 Pin=R3-2
+Added Pin To Net: NetName=+3V3 Pin=R4-1
+Added Pin To Net: NetName=+3V3 Pin=R5-1
+Added Pin To Net: NetName=+3V3 Pin=R6-1
+Added Pin To Net: NetName=+3V3 Pin=R7-2
+Added Pin To Net: NetName=NetR8_1 Pin=R8-1
+Added Pin To Net: NetName=+3V3 Pin=R9-1
+Added Pin To Net: NetName=BOOT Pin=R9-2
+Added Pin To Net: NetName=+3V3 Pin=R10-1
+Added Pin To Net: NetName=EN/RST Pin=R10-2
+Added Pin To Net: NetName=GND Pin=R11-1
+Added Pin To Net: NetName=GND Pin=R12-1
+Added Pin To Net: NetName=GND Pin=R13-1
+Added Pin To Net: NetName=GND Pin=SB1-1
+Added Pin To Net: NetName=GND Pin=SB1-1
+Added Pin To Net: NetName=BOOT Pin=SB1-2
+Added Pin To Net: NetName=BOOT Pin=SB1-2
+Added Pin To Net: NetName=GND Pin=SB2-1
+Added Pin To Net: NetName=GND Pin=SB2-1
+Added Pin To Net: NetName=EN/RST Pin=SB2-2
+Added Pin To Net: NetName=EN/RST Pin=SB2-2
+Added Pin To Net: NetName=NetR8_1 Pin=VD1-1
+Added Pin To Net: NetName=GND Pin=VD1-2
+Added Pin To Net: NetName=+3V3 Pin=X2-1
+Added Pin To Net: NetName=GND Pin=X2-5
+Added Pin To Net: NetName=GPS_ON Pin=R12-2
+Added Net: Name=GPS_ON
+Added Pin To Net: NetName=GPS_RST Pin=R13-2
+Added Net: Name=GPS_RST
+Added Pin To Net: NetName=GPS_SEC Pin=R11-2
+Added Net: Name=GPS_SEC
+Added Pin To Net: NetName=NetBT1_1 Pin=BT1-1
+Added Pin To Net: NetName=NetBT1_1 Pin=D1-2
+Added Pin To Net: NetName=NetBT1_1 Pin=D2-14
+Added Net: Name=NetBT1_1
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component BT1 BH32T-C-G
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component C1 10u
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component C2 100u
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component C3 0.1u
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component C4 100n
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component C5 100u
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component C6 1mf
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component C7 10uf
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component D1 1N4148WS
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component D2 DS3231SN
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component DD1 ValueManufacturerPartNumber
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R1 220
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R2 4.7k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R3 4.7k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R4 10k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R5 4.7k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R6 4.7k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R7 4.7k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R8 220
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R9 5k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R10 10k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R11 10k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R12 10k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component R13 10k
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component SB1 BOOT
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component SB2 EN
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component VD1 ST
+Added Member To Class: ClassName=GPSRMC_Emulator Member=Component X2 DBG
+Added Room: Name=GPSRMC_Emulator

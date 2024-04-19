@@ -1,0 +1,3 @@
+Change Class Name : Old Net Name=GPSRMC_Emulator New Net Name=ContollerRMC
+Change Room Name: Old Name=GPSRMC_Emulator New Name=ContollerRMC
+Change Room Scope: Old Scope=InComponentClass('GPSRMC_Emulator') New Scope=InComponentClass('ContollerRMC')

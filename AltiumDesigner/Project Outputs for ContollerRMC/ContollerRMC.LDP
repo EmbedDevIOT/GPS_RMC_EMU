@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc
+LayersSetName=Top_Bot_Plated_Thru_Holes|DrillFile=contollerrmc-plated.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_NonPlated_Thru_Holes|DrillFile=contollerrmc-nonplated.txt|DrillLayers=gtl,gbl

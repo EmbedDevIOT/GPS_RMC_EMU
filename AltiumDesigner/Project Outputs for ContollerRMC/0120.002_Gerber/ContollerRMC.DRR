@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: ContollerRMC.PcbDoc   19.04.2024  12:56:26
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : ContollerRMC.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      12mil (0.3mm)                                             Round             1         PTH        0.00inch (0.00mm)
+T2      16mil (0.4mm)                                             Round             18        PTH        6.30inch (160.06mm)
+T3      20mil (0.5mm)                                             Round             1         PTH        0.00inch (0.00mm)
+T4      32mil (0.8mm)                                             Round             10        PTH        0.71inch (18.00mm)
+T5      43mil (1.1mm)                                             Round             5         PTH        0.40inch (10.16mm)
+T6      106mil (2.7mm)                                            Round             2         NPTH       1.02inch (26.00mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              37
+
+Total Processing Time (hh:mm:ss) : 00:00:00
