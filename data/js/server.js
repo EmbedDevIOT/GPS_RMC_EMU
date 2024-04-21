@@ -85,13 +85,17 @@ function BTimeSet() {
 
 function BTimeAutoSet() {
     let xml = new XMLHttpRequest();
+    let now = new Date();
+
     let buf = "?";
+    buf += "T=" + now.getHours() + ":" + now.getMinutes() + "&";
+    buf += "D=" + now.getFullYear() + "-" + (now.getUTCMonth() + 1) + "-" + now.getDate();
 
-
-    xml.open("GET", "AutoSet" + buf, 1);
-    console.log(xml);
+    xml.open("GET","SysUPD" + buf,true);
     xml.send();
+    setTimeout("reload()",1000);
     alert("Настройки сохранены.");
+
 }
 
 function BWiFiUPD() {

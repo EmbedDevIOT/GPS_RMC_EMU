@@ -64,8 +64,8 @@ void HandlerCore1(void *pvParameters)
 //=======================       S E T U P       =========================
 void setup()
 {
-    CFG.fw = "0.5";
-    CFG.fwdate = "17.04.2024";
+    CFG.fw = "1.0";
+    CFG.fwdate = "21.04.2024";
 
     Serial.begin(UARTSpeed);
     Serial2.begin(CFG.gps_speed);
