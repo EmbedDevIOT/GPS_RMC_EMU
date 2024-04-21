@@ -1,0 +1,26 @@
+Net Status Report
+Filename     : V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc
+Date         : 21.04.2024
+Time         : 15:32:44
+Time Elapsed : 00:00:00
+
+Nets, Layer, Length
+    +3V3, Signal Layers Only, 156.2476mm
+    BOOT, Signal Layers Only, 34.9345mm
+    EN/RST, Signal Layers Only, 72.7454mm
+    GND, Signal Layers Only, 39.4431mm
+    GPIO5, Signal Layers Only, 22.0633mm
+    I2C_SCL, Signal Layers Only, 46.5244mm
+    I2C_SDA, Signal Layers Only, 42.3227mm
+    IO_2, Signal Layers Only, 4.0929mm
+    NetD1_1, Signal Layers Only, 3.9668mm
+    NetD1_2, Signal Layers Only, 65.0449mm
+    NetD2_1, Signal Layers Only, 12.9655mm
+    NetD2_3, Signal Layers Only, 17.2361mm
+    NetR8_1, Signal Layers Only, 2.5mm
+    RX0, Signal Layers Only, 13.014mm
+    RX2, Signal Layers Only, 43.4987mm
+    TX0, Signal Layers Only, 11.9168mm
+    TX2, Signal Layers Only, 50.248mm
+    VD_ST, Signal Layers Only, 4.0802mm
+count : 18

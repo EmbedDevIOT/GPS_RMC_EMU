@@ -1,0 +1,320 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 { 
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body { 
+			font-family : segoe ui;
+		}
+
+		td, th {  
+			padding: 0.5em;
+			text-align : left;
+		}
+		th { 
+			background-color : #EEEEEE;
+		
+		}
+		th.column1, td.column1 { 
+			width : 50%; 
+		}
+
+        th.column2, td.column2 {
+            width : 25%;
+        }
+
+		table { 
+			width : 100%; 
+            font-size: 0.9em;
+		}
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 5em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error { 
+			color : red;
+			font-weight : bold;
+		}	
+		tr.onmouseout_odd { 
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+			
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);		
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {	
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}	
+	</script><title>Net Status Report</title>
+</head>
+<body onload="document.getElementById('radio_mm').click()"><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD17\Templates\AD_logo.png
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Net Status Report</h1>
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">21.04.2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">15:32:44</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc" class="file"><acronym title="V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc">V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc</acronym></a></td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Units:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">
+<form><input type="radio" name="radio_units" id="radio_mm" onclick="changeUnits(this, 'mm')">mm<input type="radio" name="radio_units" id="radio_mil" onclick="changeUnits(this, 'mil')">mils</form>
+</td>
+</tr>
+</table><a name="IDRM132ACFIUK3P3LUTVSWJ1LS3FPZRQITDFKJGUEPKRTYIP3DTWJJ"><table>
+<tr>
+<th class="column1">Nets</th>
+<th class="column2">Layer</th>
+<th class="column3">Length</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4937.992mil|Location2.X=6170.339mil|Location1.Y=4956.63mil|Location2.Y=6448.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4937.992mil|Location2.X=6170.339mil|Location1.Y=4956.63mil|Location2.Y=6448.882mil|Absolute=True">+3V3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="61514797">156.2476mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4954.661mil|Location2.X=5944.551mil|Location1.Y=5492.063mil|Location2.Y=5830.709mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4954.661mil|Location2.X=5944.551mil|Location1.Y=5492.063mil|Location2.Y=5830.709mil|Absolute=True">BOOT</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="13753759">34.9345mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4954.661mil|Location2.X=6170.339mil|Location1.Y=5035.37mil|Location2.Y=6381.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4954.661mil|Location2.X=6170.339mil|Location1.Y=5035.37mil|Location2.Y=6381.953mil|Absolute=True">EN/RST</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="28639919">72.7454mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4954.661mil|Location2.X=6170.339mil|Location1.Y=4976.378mil|Location2.Y=6467.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4954.661mil|Location2.X=6170.339mil|Location1.Y=4976.378mil|Location2.Y=6467.189mil|Absolute=True">GND</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="15528761">39.4431mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5799.15mil|Location2.X=5992.189mil|Location1.Y=5451.709mil|Location2.Y=6098.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5799.15mil|Location2.X=5992.189mil|Location1.Y=5451.709mil|Location2.Y=6098.488mil|Absolute=True">GPIO5</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="8686342">22.0633mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5490.102mil|Location2.X=5992.189mil|Location1.Y=5353.283mil|Location2.Y=6367.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5490.102mil|Location2.X=5992.189mil|Location1.Y=5353.283mil|Location2.Y=6367.189mil|Absolute=True">I2C_SCL</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="18316712">46.5244mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5540.102mil|Location2.X=5992.189mil|Location1.Y=5258.795mil|Location2.Y=6217.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5540.102mil|Location2.X=5992.189mil|Location1.Y=5258.795mil|Location2.Y=6217.189mil|Absolute=True">I2C_SDA</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="16662483">42.3227mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">IO_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1611374">4.0929mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795.842mil|Location2.X=5992.189mil|Location1.Y=5163.323mil|Location2.Y=5221.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5795.842mil|Location2.X=5992.189mil|Location1.Y=5163.323mil|Location2.Y=5221.52mil|Absolute=True">NetD1_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1561749">3.9668mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5033.465mil|Location2.X=5901.575mil|Location1.Y=5163.323mil|Location2.Y=6205.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5033.465mil|Location2.X=5901.575mil|Location1.Y=5163.323mil|Location2.Y=6205.772mil|Absolute=True">NetD1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="25608215">65.0449mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5051.118mil|Location2.X=5522.102mil|Location1.Y=5151.063mil|Location2.Y=5256.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5051.118mil|Location2.X=5522.102mil|Location1.Y=5151.063mil|Location2.Y=5256.953mil|Absolute=True">NetD2_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="5104514">12.9655mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5051.118mil|Location2.X=5622.102mil|Location1.Y=5106.299mil|Location2.Y=5218.063mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5051.118mil|Location2.X=5622.102mil|Location1.Y=5106.299mil|Location2.Y=5218.063mil|Absolute=True">NetD2_3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="6785851">17.2361mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">NetR8_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="984252">2.5mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5857.811mil|Location2.X=6170.339mil|Location1.Y=5835.961mil|Location2.Y=6267.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5857.811mil|Location2.X=6170.339mil|Location1.Y=5835.961mil|Location2.Y=6267.189mil|Absolute=True">RX0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="5123638">13.014mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">RX2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="17125482">43.4987mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5857.811mil|Location2.X=6170.339mil|Location1.Y=5935.961mil|Location2.Y=6317.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5857.811mil|Location2.X=6170.339mil|Location1.Y=5935.961mil|Location2.Y=6317.189mil|Absolute=True">TX0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="4691672">11.9168mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5322.771mil|Location2.X=6153.543mil|Location1.Y=4944.882mil|Location2.Y=5967.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5322.771mil|Location2.X=6153.543mil|Location1.Y=4944.882mil|Location2.Y=5967.189mil|Absolute=True">TX2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="19782682">50.248mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">VD_ST</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1606397">4.0802mm
+			</a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

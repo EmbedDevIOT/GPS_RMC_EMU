@@ -95,7 +95,6 @@ function BTimeAutoSet() {
     xml.send();
     setTimeout("reload()",1000);
     alert("Настройки сохранены.");
-
 }
 
 function BWiFiUPD() {

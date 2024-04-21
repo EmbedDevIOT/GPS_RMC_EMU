@@ -1,4 +1,4 @@
-DRC Rules Export File for PCB: D:\Работа\111\ControllerAD\ContollerRMC.PcbDoc
+DRC Rules Export File for PCB: V:\Baranov\1_Work\1_Desing_documents\0120.002_EmulatorGPS_rev.0\ControllerAD\ContollerRMC.PcbDoc
 RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
 RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=11.81
 RuleKind=Width|RuleName=Width|Scope=Board|Minimum=11.81
