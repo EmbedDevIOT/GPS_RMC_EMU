@@ -16,10 +16,9 @@
 * JavaScript  
 
 ## Software:
-<img src="https://github.com/EmbedDevIOT/devicon/blob/master/icons/vscode/vscode-original-wordmark.svg" title="VSCode" alt="VSCode" width="40" height="40"/>&nbsp;
-<img src="https://github.com/EmbedDevIOT/devicon/blob/master/icons/vscode/vscode-original-wordmark.svg" title="Platformio" alt="Platformio" width="40" height="40"/>&nbsp;
-<img src="https://github.com/EmbedDevIOT/GPS_RMC_EMU/blob/main/doc/PlatformIO.svg)" title="Bootstrap" alt="Bootstrap" width="40" height="40"/>&nbsp;
-
+<img src="https://github.com/EmbedDevIOT/devicon/blob/master/icons/vscode/vscode-original-wordmark.svg" title="VSCode" alt="VSCode" width="50" height="50"/>&nbsp;
+<img src="https://github.com/EmbedDevIOT/GPS_RMC_EMU/blob/main/doc/PlatformIO.svg" title="Platformio" alt="Platformio" width="50" height="50"/>&nbsp;
+<img src="https://github.com/EmbedDevIOT/devicon/blob/master/icons/bootstrap/bootstrap-original-wordmark.svg" title="Bootstrap5" alt="Bootstrap5" width="50" height="50"/>&nbsp;
 
 * Visual Studio Code
 * PlatformIO
