@@ -12,6 +12,7 @@ void UserPresetInit()
 void SystemInit(void)
 {
   STATE.IDLE = true;
+  STATE.Led = false;
   STATE.StaticUPD = true;
   STATE.DynamicUPD = true;
   STATE.DUPDBlock = false;
@@ -176,6 +177,7 @@ void Build_and_SendRMC()
 
   char buf[32] = "";
   char GNRMC[128] = "$GNRMC,";
+  memset(buf,0, strlen(buf));
 
   sprintf(buf, "%02u", Clock.hour);
   strcat(GNRMC, buf);
@@ -192,7 +194,7 @@ void Build_and_SendRMC()
   sprintf(crc_temp, "%X", CRC);
   strcat(GNRMC, crc_temp);
   Serial2.println(GNRMC);
-  // Serial.println(GNRMC);
+  Serial.println(GNRMC);
 }
 
 void Build_and_SendGGA()
@@ -219,7 +221,7 @@ void Build_and_SendGGA()
   sprintf(crc_temp, "%X", CRC);
   strcat(GGA, crc_temp);
   Serial2.println(GGA);
-  // Serial.println(GGA);
+  Serial.println(GGA);
 }
 
 void Build_and_SendNMEA()
@@ -227,14 +229,18 @@ void Build_and_SendNMEA()
   char msg[70];
   Build_and_SendRMC();
 
+  memset(msg,0, strlen(msg));
   strcat(msg, "$GVTG,,T,,M,0.00,N,0.00,K,A*23");
   Serial2.println(msg);
+  Serial.println(msg);
 
   Build_and_SendGGA();
   memset(msg,0, strlen(msg));
 
   strcat(msg, "$GNGSA,A,3,10,23,24,32,,,,,,,,,3.29,3.14,0.98,1*09");
   Serial2.println(msg);
+  Serial.println(msg);
+
 }
 
 //======================= CRC Check summ calculators  =====================

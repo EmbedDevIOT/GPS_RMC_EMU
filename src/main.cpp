@@ -4,6 +4,8 @@
 #include "WF.h"
 #include "HTTP.h"
 
+#define RX2 16
+#define TX2 17
 //=========================== GLOBAL VARIABLES =========================
 char buf[32] = {0}; // buff for send message
 // String rmc_msg = "$GPRMC,144526.539,A,5231.772,N,01324.117,E,777.4,084.4,120424,000.0,W*7C";
@@ -51,8 +53,11 @@ void HandlerCore1(void *pvParameters)
     Serial.println(xPortGetCoreID());
     for (;;)
     {
+        STATE.Led = !STATE.Led;
+
         Clock = RTC.getTime();
         DebugInfo();
+        digitalWrite(LED_ST, STATE.Led);
 
         Build_and_SendNMEA();
 
@@ -68,7 +73,7 @@ void setup()
     CFG.fwdate = "21.04.2024";
 
     Serial.begin(UARTSpeed);
-    Serial2.begin(CFG.gps_speed);
+    Serial2.begin(CFG.gps_speed, SERIAL_8N1, TX2, RX2);
 
     SystemInit();
     // RTC INIT
@@ -81,7 +86,7 @@ void setup()
     Clock = RTC.getTime();
     Serial.println(F("RTC...Done"));
 
-    EEP_Read();
+    // EEP_Read();
     byte errSPIFFS = SPIFFS.begin(true);
 
     LoadConfig(); // Load configuration from config.json files
@@ -93,6 +98,9 @@ void setup()
 
     HTTPinit(); // HTTP server initialisation
     delay(100);
+
+    pinMode(LED_ST, OUTPUT);
+    digitalWrite(LED_ST, LOW);
 
     for (uint8_t i = 0; i < 5; i++)
     {

@@ -107,7 +107,7 @@ struct Flag
   bool DynamicUPD : 1;
   bool DUPDBlock : 1;
   bool IDLE : 1;
-  bool LedUser : 1;
+  bool Led : 1;
   bool SaveFlash : 1;
   bool Debug : 1;
   bool WiFiEnable : 1;
