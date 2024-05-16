@@ -26,11 +26,13 @@ TaskHandle_t TaskCore_1;
 DateTime Clock;
 GlobalConfig CFG;
 Flag STATE;
+WiFiConfig WiFiC;
 //=======================================================================
 
 //======================    FUNCTION PROTOTYPS     ======================
 void HandlerCore0(void *pvParameters);
 void HandlerCore1(void *pvParameters);
+void CheckWiFi(void);
 //=======================================================================
 
 //=======================================================================
@@ -41,7 +43,8 @@ void HandlerCore0(void *pvParameters)
     Serial.println(xPortGetCoreID());
     for (;;)
     {
-        HandleClient();
+        if (STATE.WiFiEN)
+            HandleClient();
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
@@ -53,11 +56,11 @@ void HandlerCore1(void *pvParameters)
     Serial.println(xPortGetCoreID());
     for (;;)
     {
-        STATE.Led = !STATE.Led;
+        if (STATE.WiFiEN)
+            CheckWiFi();
 
         Clock = RTC.getTime();
         DebugInfo();
-        digitalWrite(LED_ST, STATE.Led);
 
         Build_and_SendNMEA();
 
@@ -69,8 +72,8 @@ void HandlerCore1(void *pvParameters)
 //=======================       S E T U P       =========================
 void setup()
 {
-    CFG.fw = "1.0";
-    CFG.fwdate = "21.04.2024";
+    CFG.fw = "1.0.1";
+    CFG.fwdate = "16.05.2024";
 
     Serial.begin(UARTSpeed);
     Serial2.begin(CFG.gps_speed, SERIAL_8N1, TX2, RX2);
@@ -94,6 +97,7 @@ void setup()
     ShowLoadJSONConfig();
 
     WIFIinit();
+
     delay(1000);
 
     HTTPinit(); // HTTP server initialisation
@@ -132,4 +136,32 @@ void setup()
 
 //=======================        L O O P        =========================
 void loop() {}
+//=======================================================================
+
+//=======================================================================
+void CheckWiFi()
+{
+    STATE.Led = !STATE.Led;
+    digitalWrite(LED_ST, STATE.Led);
+
+    if (STATE.WiFiEN == true && WiFiC.Tsec < 59)
+    {
+        WiFiC.Tsec++;
+    }
+    else
+    {
+        WiFiC.Tsec = 0;
+        WiFiC.Tmin++;
+    }
+
+    if (WiFiC.Tmin == 1)
+    {
+        STATE.Led = false;
+        digitalWrite(LED_ST, STATE.Led);
+        STATE.WiFiEN = false;
+        Serial.println("WiFi_Disable");
+        WiFi.disconnect();
+        WiFi.mode(WIFI_OFF);
+    }
+}
 //=======================================================================

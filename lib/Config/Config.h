@@ -15,7 +15,7 @@
 
 #define WiFi_
 
-#define WiFiTimeON 10
+#define WiFiTimeON 1
 #define Client 0
 #define AccessPoint 1
 #define WorkNET
@@ -92,6 +92,15 @@ extern GlobalConfig CFG;
 //=======================================================================
 
 //=======================================================================
+struct WiFiConfig
+{
+  uint8_t Tmin = 0;
+  uint8_t Tsec = 0;
+};
+extern WiFiConfig WiFiC;
+//=======================================================================
+
+//=======================================================================
 struct HardwareConfig
 {
   uint8_t ERRORcnt = 0;
@@ -110,7 +119,8 @@ struct Flag
   bool Led : 1;
   bool SaveFlash : 1;
   bool Debug : 1;
-  bool WiFiEnable : 1;
+  bool WiFiEN : 1;
+  bool WiFiBLock : 1;
 };
 extern Flag STATE;
 //============================================================================

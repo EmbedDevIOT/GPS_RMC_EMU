@@ -20,6 +20,7 @@ void WIFIinit(boolean mode)
 
       WiFi.disconnect();
       WiFi.mode(WIFI_STA);
+      WiFi.setTxPower(WIFI_POWER_MINUS_1dBm);
       
       byte tries = 6;
 

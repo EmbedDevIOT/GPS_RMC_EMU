@@ -81,6 +81,9 @@ void UpdateData()
   buf += String(Clock.year) + "-" + ((Clock.month < 10) ? "0" : "") + String(Clock.month) + "-" + ((Clock.date < 10) ? "0" : "") + String(Clock.date) + "\"";
   buf += "}";
 
+  WiFiC.Tsec = 0;
+  WiFiC.Tmin = 0;
+
   HTTP.send(200, "text/plain", buf);
 }
 /*******************************************************************************************************/

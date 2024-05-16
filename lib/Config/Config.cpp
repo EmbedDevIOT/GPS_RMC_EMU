@@ -18,7 +18,8 @@ void SystemInit(void)
   STATE.DUPDBlock = false;
   STATE.SaveFlash = false;
   STATE.Debug = true;
-  STATE.WiFiEnable = true;
+  STATE.WiFiEN = true;
+  STATE.WiFiBLock = false;
 
   GetChipID();
 }
@@ -232,15 +233,12 @@ void Build_and_SendNMEA()
   memset(msg,0, strlen(msg));
   strcat(msg, "$GVTG,,T,,M,0.00,N,0.00,K,A*23");
   Serial2.println(msg);
-  Serial.println(msg);
 
   Build_and_SendGGA();
   memset(msg,0, strlen(msg));
 
   strcat(msg, "$GNGSA,A,3,10,23,24,32,,,,,,,,,3.29,3.14,0.98,1*09");
   Serial2.println(msg);
-  Serial.println(msg);
-
 }
 
 //======================= CRC Check summ calculators  =====================
