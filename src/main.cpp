@@ -153,7 +153,7 @@ void CheckWiFi()
         WiFiC.Tmin ++;
     }
 
-    if (WiFiC.Tmin == WiFiC.TimON)
+    if (WiFiC.Tmin == 2)
     {
         STATE.Led = false;
         digitalWrite(LED_ST, STATE.Led);

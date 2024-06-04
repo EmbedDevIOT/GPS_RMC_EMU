@@ -143,7 +143,8 @@ void SerialNumberUPD()
   CFG.sn = HTTP.arg("sn").toInt();
   Serial.printf("SN:");
   Serial.println(CFG.sn);
-  EEP_Write();
+  SaveConfig();
+  // EEP_Write();
   HTTP.send(200, "text/plain", "Serial Number set");
 }
 /*******************************************************************************************************/

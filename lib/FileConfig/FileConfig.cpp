@@ -29,7 +29,7 @@ void LoadConfig()
   CFG.IP4 = doc["ip4"];
 
   CFG.APPAS = doc["pass"].as<String>();
-  // CFG.sn = doc["sn"];
+  CFG.sn = doc["sn"];
 
   CFG.APSSID = doc["ssid"].as<String>();
 
@@ -110,13 +110,13 @@ void TestDeserializJSON()
   Serial.println("JSON testing comleted");
 }
 
-void EEP_Write()
-{
-  eep.write(0, CFG.sn);
-}
+// void EEP_Write()
+// {
+//   eep.write(0, CFG.sn);
+// }
 
-// Reading data from EEPROM
-void EEP_Read()
-{
-  CFG.sn = eep.read(0);
-}
+// // Reading data from EEPROM
+// void EEP_Read()
+// {
+//   CFG.sn = eep.read(0);
+// }
