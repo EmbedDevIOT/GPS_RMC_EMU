@@ -94,6 +94,7 @@ extern GlobalConfig CFG;
 //=======================================================================
 struct WiFiConfig
 {
+  const uint8_t TimON = 5;
   uint8_t Tmin = 0;
   uint8_t Tsec = 0;
 };

@@ -89,7 +89,6 @@ void setup()
     Clock = RTC.getTime();
     Serial.println(F("RTC...Done"));
 
-    // EEP_Read();
     byte errSPIFFS = SPIFFS.begin(true);
 
     LoadConfig(); // Load configuration from config.json files
@@ -146,15 +145,15 @@ void CheckWiFi()
 
     if (STATE.WiFiEN == true && WiFiC.Tsec < 59)
     {
-        WiFiC.Tsec++;
+        WiFiC.Tsec ++;
     }
     else
     {
         WiFiC.Tsec = 0;
-        WiFiC.Tmin++;
+        WiFiC.Tmin ++;
     }
 
-    if (WiFiC.Tmin == 1)
+    if (WiFiC.Tmin == WiFiC.TimON)
     {
         STATE.Led = false;
         digitalWrite(LED_ST, STATE.Led);
