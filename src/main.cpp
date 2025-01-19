@@ -6,6 +6,8 @@
 
 #define RX2 16
 #define TX2 17
+
+
 //=========================== GLOBAL VARIABLES =========================
 char buf[32] = {0}; // buff for send message
 // String rmc_msg = "$GPRMC,144526.539,A,5231.772,N,01324.117,E,777.4,084.4,120424,000.0,W*7C";
@@ -62,7 +64,11 @@ void HandlerCore1(void *pvParameters)
         Clock = RTC.getTime();
         DebugInfo();
 
-        Build_and_SendNMEA();
+        if(CFG.GPS_MODEL == L76){
+            Build_and_SendNMEA();
+        }else{
+            Build_and_SendNL3333();
+        }         
 
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
@@ -72,8 +78,16 @@ void HandlerCore1(void *pvParameters)
 //=======================       S E T U P       =========================
 void setup()
 {
-    CFG.fw = "1.0.1";
-    CFG.fwdate = "16.05.2024";
+    CFG.fw = "1.1";
+    CFG.fwdate = "19.01.2025";
+
+    CFG.GPS_MODEL = NL3333;
+
+    if(CFG.GPS_MODEL == L76){
+        CFG.gps_speed = 9600;
+    }else{
+        CFG.gps_speed = 115200;
+    }
 
     Serial.begin(UARTSpeed);
     Serial2.begin(CFG.gps_speed, SERIAL_8N1, TX2, RX2);
@@ -97,10 +111,10 @@ void setup()
 
     WIFIinit();
 
-    delay(1000);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
 
     HTTPinit(); // HTTP server initialisation
-    delay(100);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
 
     pinMode(LED_ST, OUTPUT);
     digitalWrite(LED_ST, LOW);
@@ -108,7 +122,7 @@ void setup()
     for (uint8_t i = 0; i < 5; i++)
     {
         Build_and_SendNMEA();
-        delay(1000);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 
     xTaskCreatePinnedToCore(

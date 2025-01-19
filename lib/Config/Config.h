@@ -13,6 +13,10 @@
 
 #define UARTSpeed 115200
 
+// GPS Module Select 
+#define L76 1     // L76 - new GPS module  - Speed 9600 Quectell and other. RMC ver.4.1 - 13 comma ","
+#define NL3333 0  // NL3333 - old GPS module  - Speed 115200 for NL3333. RMC ver.4.0 - 12 comma "," 
+
 #define WiFi_
 
 #define WiFiTimeON 1
@@ -55,7 +59,7 @@ enum Clicks
 struct GlobalConfig
 {
   uint16_t sn = 0;
-  uint16_t gps_speed = 9600;
+  uint32_t gps_speed = 0; // 9600 - Quectell L76 or 115200 NL3333
   String fw = ""; 
   String fwdate = "";
   String chipID = "";
@@ -69,6 +73,7 @@ struct GlobalConfig
   String Password = "QFCxfXMA3"; // Passwords WiFi network
 
   int TimeZone = 0;
+  bool GPS_MODEL = NL3333;
 
   char time[7] = "";
   char date[9] = "";
@@ -137,9 +142,10 @@ void SystemFactoryReset(void);
 void ShowFlashSave(void);
 void getTimeChar(char* array);
 void getDateChar(char* array);
-void Build_and_SendRMC(void);
+void Build_and_SendRMC(uint8_t module_type);
 void Build_and_SendGGA(void);
 void Build_and_SendNMEA(void);
+void Build_and_SendNL3333(void);
 uint8_t nmea_get_checksum(const char *sentence);
 // void GPSFStart(void);
 //============================================================================

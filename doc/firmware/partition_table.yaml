@@ -1,0 +1,8 @@
+partition_table:
+  bootloader: 0x1000
+  partition: 0x8000 
+  firmware: 0x10000
+  spiffs: 0x00290000
+link_file:
+  build_file: "B:\workspace\RetraKB\0120.002_EmulatorGPS_rev.0\GPS_RMC_EMU\.pio\build\esp32doit-devkit-v1\idedata.json"
+  spiffs: Wrote 1441792 bytes (12436 compressed) at 0x00290000 in 6.4 seconds (effective 1805.6 kbit/s)...

@@ -109,6 +109,7 @@ void SystemFactoryReset()
   CFG.WiFiMode = AccessPoint;
   CFG.APSSID = "0120-0";
   CFG.APPAS = "retra0120zxc";
+  CFG.GPS_MODEL = NL3333;
   CFG.IP1 = 192;
   CFG.IP2 = 168;
   CFG.IP3 = 1;
@@ -121,7 +122,6 @@ void SystemFactoryReset()
   CFG.MK2 = 255;
   CFG.MK3 = 255;
   CFG.MK4 = 0;
-  CFG.gps_speed = 9600;
 }
 
 /***************************************************************************************/
@@ -169,7 +169,7 @@ void getDateChar(char *array)
 }
 /*****************************************************************************************/
 
-void Build_and_SendRMC()
+void Build_and_SendRMC(uint8_t module_type)
 {
   getTimeChar(CFG.time);
   getDateChar(CFG.date);
@@ -178,7 +178,7 @@ void Build_and_SendRMC()
 
   char buf[32] = "";
   char GNRMC[128] = "$GNRMC,";
-  memset(buf,0, strlen(buf));
+  memset(buf, 0, strlen(buf));
 
   sprintf(buf, "%02u", Clock.hour);
   strcat(GNRMC, buf);
@@ -186,9 +186,19 @@ void Build_and_SendRMC()
   strcat(GNRMC, buf);
   sprintf(buf, "%02u", Clock.second);
   strcat(GNRMC, buf);
-  strcat(GNRMC, ".000,A,5500.8041,N,08238.2697,E,0.00,,");
-  strcat(GNRMC, CFG.date);
-  strcat(GNRMC, ",,,A,V*");
+
+  if (module_type == L76)
+  {
+    strcat(GNRMC, ".000,A,5500.8041,N,08238.2697,E,0.00,,"); 
+    strcat(GNRMC, CFG.date);
+    strcat(GNRMC, ",,,A,V*"); 
+  }
+  else{
+    strcat(GNRMC, ".000,A,5500.8041,N,08238.2697,E,0.00,15.17,"); 
+    strcat(GNRMC, CFG.date);
+    strcat(GNRMC, ",,,A*"); 
+  }
+
 
   CRC = nmea_get_checksum(GNRMC);
   char crc_temp[5] = {0};
@@ -225,20 +235,35 @@ void Build_and_SendGGA()
   Serial.println(GGA);
 }
 
+// Data for QUECTELL L76
 void Build_and_SendNMEA()
 {
   char msg[70];
-  Build_and_SendRMC();
+  Build_and_SendRMC(L76);
 
-  memset(msg,0, strlen(msg));
+  memset(msg, 0, strlen(msg));
   strcat(msg, "$GVTG,,T,,M,0.00,N,0.00,K,A*23");
   Serial2.println(msg);
 
   Build_and_SendGGA();
-  memset(msg,0, strlen(msg));
+  memset(msg, 0, strlen(msg));
 
   strcat(msg, "$GNGSA,A,3,10,23,24,32,,,,,,,,,3.29,3.14,0.98,1*09");
   Serial2.println(msg);
+}
+
+// Data for NL3333
+void Build_and_SendNL3333()
+{
+  char msg[70];
+  memset(msg, 0, strlen(msg));
+  strcat(msg, "$GPGSA,A,3,05,20,,,,,,,,,,,3.35,3.20,0.98*00");
+  Serial2.println(msg);
+  memset(msg, 0, strlen(msg));
+  strcat(msg, "$GLGSA,A,3,80,83,,,,,,,,,,,3.35,3.20,0.98*18");
+  Serial2.println(msg);
+  memset(msg, 0, strlen(msg));
+  Build_and_SendRMC(NL3333);
 }
 
 //======================= CRC Check summ calculators  =====================
